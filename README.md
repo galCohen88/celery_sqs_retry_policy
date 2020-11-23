@@ -11,7 +11,7 @@ Docker-compose takes the queue URL, feel free changing it
 tasks.py file have hard coded values as well, feel free changing it 
 app.conf.broker_url under tasks.py should be filled with sqs url with following format: 
 ```
-sqs://<aws access key>:<aws secret>@sqs.us-east-1.amazonaws.com/160043208412/sqs-us-east-1-amazonaws-com_160043208412_try2
+sqs://<aws access key>:<aws secret>@sqs.us-east-1.amazonaws.com/<account id>/<queue name>
 ```
 
 
