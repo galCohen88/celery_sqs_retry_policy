@@ -10,8 +10,9 @@ app.conf.broker_transport_options = {
 }
 
 
-@app.task(acks_late=True)
+@app.task(acks_late=True, acks_on_failure_or_timeout=False)
 def task1():
-    print("this shit is working")
+    print("this shit is not working")
+    ex = 1/0
     return
 
