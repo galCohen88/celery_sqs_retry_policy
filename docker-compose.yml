@@ -5,6 +5,9 @@ services:
     ports:
        - 5000:5000
     command: python svc/app/api.py
+    volumes:
+      - /Users/galcohen/.ssh:/root/.ssh
+      - /Users/galcohen/.git:/root/.git
   celery:
     build: .
     command: celery -A svc.tasks.tasks worker -Q sqs-us-east-1-amazonaws-com_160043208412_try2 -l info --concurrency=1 -E --time-limit=10
