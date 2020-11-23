@@ -2,6 +2,8 @@
 
 ### Exponential retry policy for Celery and SQS
 
+## Look under celery.py
+
 This is a monkey patch for Kombu QoS class, changing SQS visibility timeout exponentially
 
 If you like to change the backoff policy / retry function, you can alter the celery.py=>retry_policy dictionary with a function
