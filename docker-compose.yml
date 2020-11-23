@@ -1,0 +1,11 @@
+version: '3'
+services:
+  api:
+    build: .
+    ports:
+       - 5000:5000
+    command: python svc/app/api.py
+  celery:
+    build: .
+    command: celery -A svc.tasks.tasks worker -Q sqs-us-east-1-amazonaws-com_160043208412_try2 -l info --concurrency=1 -E --time-limit=10
+

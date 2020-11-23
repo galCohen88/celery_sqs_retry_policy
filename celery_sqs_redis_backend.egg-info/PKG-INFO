@@ -1,0 +1,12 @@
+Metadata-Version: 1.0
+Name: celery-sqs-redis-backend
+Version: 0.1
+Summary: UNKNOWN
+Home-page: UNKNOWN
+Author: UNKNOWN
+Author-email: UNKNOWN
+License: UNKNOWN
+Description: # celery_sqs_retry_policy
+        Exponential retry policy for Celery and SQS
+        
+Platform: UNKNOWN
