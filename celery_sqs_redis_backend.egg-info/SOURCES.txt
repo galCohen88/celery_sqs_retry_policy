@@ -1,8 +1,0 @@
-README.md
-setup.py
-celery_sqs_redis_backend.egg-info/PKG-INFO
-celery_sqs_redis_backend.egg-info/SOURCES.txt
-celery_sqs_redis_backend.egg-info/dependency_links.txt
-celery_sqs_redis_backend.egg-info/requires.txt
-celery_sqs_redis_backend.egg-info/top_level.txt
-svc/__init__.py

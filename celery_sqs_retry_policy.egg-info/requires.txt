@@ -1,5 +1,0 @@
-Flask==1.1.1
-celery[sqs]
-kombu
-redis==2.10.6
-boto3
