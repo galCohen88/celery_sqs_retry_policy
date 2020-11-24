@@ -17,3 +17,6 @@ If you like to change the backoff policy / retry function, you can alter the cel
 ```
 sqs://<aws access key>:<aws secret>@sqs.us-east-1.amazonaws.com/<account id>/<queue name>
 ```
+
+### Adding a new task
+Calling `http://localhost:5000/task` will add a new message to the queue, the task will fail on ZeroDivisionError, in order to demonstrate the solution
