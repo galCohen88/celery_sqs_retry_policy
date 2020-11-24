@@ -1,18 +1,19 @@
-from kombu.kombu.transport import virtual
+from kombu.asynchronous.aws.sqs import connection
+from kombu.transport import virtual
 from kombu.transport.SQS import Channel
 
 exponential_retry_tasks = ['svc.tasks.tasks.task1']
 
 # retry policy (after first task was executed)
-# 1st - 2mins
-# 2nd - 5mins
-# 3rd - 30min
-# 4th - 1hr
-# 5th - 3hr
-# 6th - 6hr
-# 7th - 8.5hr
-retry_policy = {1: 120, 2: 300, 3: 1800, 4: 3600, 5: 10800, 6: 21600, 7: 30600}
-queue_name = 'SQS_queue'
+# 1st - 10sec
+# 2nd - 15sec
+# 3rd - 30sec
+# 4th - 1min
+# 5th - 2min
+# 6th - 4min
+# 7th - 8min
+retry_policy = {1: 10, 2: 15, 3: 30, 4: 60, 5: 120, 6: 240, 7: 480}
+queue_name = '<queue name>'
 
 
 class QoS(virtual.QoS):
@@ -34,9 +35,20 @@ class QoS(virtual.QoS):
     def extract_task_name_and_number_of_retries(self, delivery_tag):
         message = self._delivered.get(delivery_tag)
         message_headers = message.headers
-        task_name = message_headers.get['task']
-        number_of_retries = message_headers['retries']
+        task_name = message_headers['task']
+        number_of_retries = int(message.properties['delivery_info']['sqs_message']['Attributes']['ApproximateReceiveCount'])
         return task_name, number_of_retries
 
 
 Channel.QoS = QoS
+
+
+receive_message = connection.AsyncSQSConnection.receive_message
+
+
+def receive_message_with_receive_count(self, queue, queue_url, **kwargs):
+    kwargs['attributes'] = ('ApproximateReceiveCount',)
+    receive_message(self, queue, queue_url, **kwargs)
+
+
+connection.AsyncSQSConnection.receive_message = receive_message_with_receive_count
