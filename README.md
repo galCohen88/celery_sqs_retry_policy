@@ -2,6 +2,8 @@
 
 ### Exponential retry policy for Celery and SQS
 
+![Alt text](splunk.png?raw=true "Diagram")
+
 ## Look under svc/celery
 
 This is a monkey patch for Kombu QoS class, changing SQS visibility timeout exponentially, depending on number of retries
