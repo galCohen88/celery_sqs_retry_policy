@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/task')
 def task():
-    task1.apply_async((), queue='<queue name>')
+    task1.apply_async((), queue='sqs-us-east-1-amazonaws-com_160043208412_try2')
     return 'added new task to the Q'
 
 
